@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getHistory } from '../services/api';
 
-const ClaimHistory = () => {
+const ClaimHistory = ({refreshTrigger}) => {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ const ClaimHistory = () => {
       setHistory(res.data);
     };
     fetchHistory();
-  }, []);
+  }, [refreshTrigger]);
 
   return (
     <div className="mt-8">

@@ -8,6 +8,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState("");
   const [lastClaim, setLastClaim] = useState(null);
+  const [refreshHistoryFlag, setRefreshHistoryFlag] = useState(0);
 
   // fetch users on load
   const loadUsers = async () => {
@@ -28,6 +29,7 @@ function App() {
     if (!selectedUserId) return alert("Please select a user");
     const res = await claimPoints(selectedUserId);
     setLastClaim(res.data);
+    setRefreshHistoryFlag((prev) => prev + 1); // 🔁 triggers history refresh
     await loadUsers(); // update leaderboard
   };
 
@@ -66,7 +68,7 @@ function App() {
           </li>
         ))}
       </ul>
-      <ClaimHistory />
+      <ClaimHistory refreshTrigger={refreshHistoryFlag} />
     </div>
   );
 }
