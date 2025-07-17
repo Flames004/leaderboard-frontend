@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import UserSelector from "./components/UserSelector";
 import AddUserForm from "./components/AddUserForm";
 import { fetchUsers, addUser, claimPoints } from "./services/api";
+import ClaimHistory from "./components/ClaimHistory";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -65,6 +66,7 @@ function App() {
           </li>
         ))}
       </ul>
+      <ClaimHistory />
     </div>
   );
 }
